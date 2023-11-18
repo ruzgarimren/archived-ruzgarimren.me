@@ -1,2 +1,0 @@
-# ruzgarimren.me
-Portfolio
