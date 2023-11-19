@@ -69,4 +69,24 @@ h3 {
   color: blue;
 }
 
+.Paragraph {
+  width: 1000px;
+  height: 500px;
+  margin-top: 10px;
+  background-color: gray;
+  justify-self: center;
+}
 
+.Paragraph h2 {
+  position: relative;
+  padding-top: 20px;
+  padding-right: 500px;
+  justify-content: start;
+}
+
+.Paragraph p {
+  position: relative;
+  padding-top: 20px;
+  padding-right: 200px;
+  justify-content: start;
+}
