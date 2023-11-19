@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
 .App {
   text-align: center;
 }
@@ -30,3 +32,41 @@
 .App-link {
   color: #61dafb;
 }
+
+h3 {
+  color: black;
+}
+
+.Navbar-Container {
+  margin: -30px;
+}
+
+#Navbar-Home {
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  color: rgb(97, 97, 97);
+}
+
+#Navbar-Videos {
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  color: rgb(97, 97, 97);
+}
+
+#Navbar-Projects {
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  color: rgb(97, 97, 97);
+}
+
+#Navbar-Home:hover,
+#Navbar-Videos:hover,
+#Navbar-Projects:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+
