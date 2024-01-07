@@ -4,20 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:image" content="https://ruzgarimren.me/wp-content/uploads/2023/11/portfolio-fotor-20231125125858.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:image:width" content="630" />
+  <meta property="og:image:height" content="1200" />
+  <meta property="og:description" content="I'm Ruzgar, a software developer and educator living in Istanbul, Turkiye.">
   <title>Ruzgar Imren</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.Navbar-Container a');
+      navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+              e.preventDefault();
+              const sectionId = this.getAttribute('data-target');
+              window.history.pushState({}, '', '/' + sectionId);
+              showSection(sectionId);
+          });
+      });
+
+      function showSection(sectionId) {
+          document.querySelectorAll('.App > section').forEach(section => {
+              section.style.display = 'none';
+          });
+
+          const section = document.getElementById(sectionId);
+          if (section) {
+              section.style.display = 'block';
+          }
+      }
+
+      let initialSection = window.location.pathname.replace('/', '');
+      if (!initialSection || initialSection === '/') {
+          initialSection = 'home';
+          window.history.replaceState({}, '', '/home');
+      }
+      showSection(initialSection);
+    });
+
+    window.onpopstate = function(e) {
+        const sectionId = window.location.pathname.replace('/', '');
+        if (sectionId) {
+            showSection(sectionId);
+        }
+    };
+</script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-    #title {
+    html {
+      overflow-y: scroll;
+    }
+
+    .title {
       white-space: pre-wrap;
       font-size: 35px;
       margin-left: 18px;
     }
 
-    /* Scrollbar Styles */
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -31,9 +74,12 @@
     }
 
     .App {
+      -webkit-user-select: none;
+      -moz-user-select: none; 
+      -ms-user-select: none;    
+      user-select: none;
       text-align: center;
       height: 2000px;
-      overflow-y: auto;
     }
 
     .App-logo {
@@ -55,7 +101,11 @@
     h2 {
       color: black;
       margin-top: 30px;
-      margin-bottom: 40px;
+      margin-bottom: 22px;
+    }
+
+	  #calcformatics {
+      margin-bottom: 10px;
     }
 
     .Navbar-Container {
@@ -74,6 +124,7 @@
     .a:hover {
       text-decoration: underline;
       color: blue;
+      text-decoration-color: blue;
     }
 
     .Paragraph {
@@ -82,7 +133,6 @@
       text-align: left;
       height: 3000px;
       position: relative;
-      overflow-y: auto;
     }
 
     .Paragraph p {
@@ -103,39 +153,88 @@
         padding-right: 0;
       }
 
+      .Paragraph #calcformatics-text {
+        margin: 0;
+      }
+
       .Navbar-Container {
         flex-direction: column;
         align-items: center;
       }
 
       .a {
-        margin: 5px 0;
+        text-decoration: inherit;
+        cursor: pointer;
       }
-    }
+
+      .marker {
+        unicode-bidi: isolate;
+        font-variant-numeric: tabular-nums;
+        text-transform: none;
+        text-indent: 0px !important;
+        text-align: start !important;
+        text-align-last: start !important;
+		    text-decoration: inherit;
+      }
+
+      .link {
+        font-size: 18px;
+        text-decoration: inherit;
+      }
+
+      .mystack {
+        text-decoration: inherit;
+      }
+
+      .mystack:hover {
+        text-decoration: underline;
+      }
+		
   </style>
 </head>
 <body>
   <div class="App"> 
     <header class="App-header">
-      <img src="https://ruzgarimren.me/wp-content/uploads/2023/11/portfolio-fotor-20231125125858.png" class="App-logo" alt="logo">
+      <img src="https://ruzgarimren.me/wp-content/uploads/2023/11/portfolio-fotor-20231125125858.png" class="App-logo" alt="Profile Picture">
       <h2>Ruzgar Imren</h2>
       <nav>
         <div class="Navbar-Container">
-          <a class="a" id="Navbar-Home" href="/home">Home</a>
-          <a class="a" id="Navbar-Videos" href="/videos">Videos</a>
-          <a class="a" id="Navbar-Projects" href="/projects">Projects</a>
+          <a class="a" data-target="home" href="/home">Home</a>
+          <a class="a" data-target="videos" href="/videos">Videos</a>
+          <a class="a" data-target="projects" href="/projects">Projects</a>
         </div>
       </nav>
     </header>
-    <section class="Paragraph">
-      <h1 id="title">Hello!</h1>
+    <section id="home" class="Paragraph">
+      <h1 class="title">Hello!</h1>
       <p>
 I'm Ruzgar, a software developer and educator living in Istanbul, Turkiye.
 		  
-I run <a target="_blank" href="https://www.youtube.com/@CalcFormatics">CalcFormatics</a>, a video series teaching topics in computer science and mathematics. At Harvard University, I've created and taught courses about artificial intelligence and web programming. I've also been a course head for CS50, Harvard's introductory course in computer science, and a co-instructor for CS51, Harvard's course on abstraction and design in computing. I currently work at <a target="_blank" href="https://www.turing.com/" rel="noopener">Turing</a>, developing an artificial intelligence tool as a chatbot. I've also been working at <a target="_blank" href="https://blang.framer.website/" rel="noopener">BLang</a>, an ai-based language learning platform, and running my own startup, <a target="_blank" href="https://rallin.org" rel="noopener">Rallin Security</a>.
+I run <b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b>, a video series teaching topics in computer science and mathematics. At Harvard University, I've created and taught courses about artificial intelligence and web programming. I've also been a course head for CS50, Harvard's introductory course in computer science, and a co-instructor for CS51, Harvard's course on abstraction and design in computing. I currently work at <b><a class="mystack" target="_blank" href="https://www.turing.com/" rel="noopener">Turing</a></b>, developing an artificial intelligence tool as a chatbot. I've also been working at <a class="mystack" target="_blank" href="https://blang.framer.website/" rel="noopener">BLang</a>, an ai-based language learning platform, and running my own startup, <a class="mystack" target="_blank" href="https://rallin.org" rel="noopener">Rallin Security</a>.
 		  
-Contact me at ruzgar@ruzgarimren.me.
+Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzgarimren.me</a>.
       </p>
+
+      <h1 class="title" id="calcformatics">CalcFormatics</h1>
+      <p id="calcformatics-text">
+<b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b> is a collection of educational videos I've written and filmed primarily about topics in computer science.
+      </p>
+
+      <h1 class="title">Links</h1>
+      <ul class="links">
+        <li class="marker"><a class="link" href="mailto:ruzgar@ruzgarimren.me">Email</a></li>
+        <li class="marker"><a class="link" target="_blank" href="https://github.com/ruzgarimren" rel="noopener">GitHub</a></li>
+        <li class="marker"><a class="link" target="_blank" href="https://linkedin/in/ruzgarimren" rel="noopener">LinkedIn</a></li>
+        <li class="marker"><a class="link" target="_blank" href="https://youtube/@CalcFormatics" rel="noopener">Youtube</a></li>
+        <li class="marker"><a class="link" target="_blank" href="https://substack.com/@calcformatics" rel="noopener">Substack</a></li>
+      </ul>
+    </section>
+
+    <section id="videos">
+		<div class="Video">
+        	<iframe src="https://www.youtube.com/watch?v=nrDs3Tk08bg" frameborder="0" allowfullscreen></iframe>
+        	<p>Harvard Mathematics Admissions | Geometry / Probability Question (Heron's Formula)</p>
+      </div>
     </section>
   </div>
 </body>
