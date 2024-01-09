@@ -13,41 +13,37 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
   <script>
    document.addEventListener('DOMContentLoaded', function() {
-      const navLinks = document.querySelectorAll('.Navbar-Container a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const sectionId = this.getAttribute('data-target');
-          window.history.pushState({}, '', '/' + sectionId);
-          showSection(sectionId);
-        });
+    function showSection(sectionId) {
+      document.querySelectorAll('.App > section').forEach(section => {
+        section.style.display = 'none';
       });
 
-      function showSection(sectionId) {
-        document.querySelectorAll('.App > section').forEach(section => {
-          section.style.display = 'none';
-        });
-
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.style.display = 'block';
-        }
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.style.display = 'block';
+        document.title = "Ruzgar Imren - " + sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
       }
+    }
 
-      let initialSection = window.location.pathname.replace('/', '');
-      if (!initialSection || initialSection === '/') {
-        initialSection = 'home';
-        window.history.replaceState({}, '', '/home');
-      }
-      showSection(initialSection);
+    const navLinks = document.querySelectorAll('.Navbar-Container a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const sectionId = this.getAttribute('data-target');
+        window.history.pushState({}, '', '/' + sectionId);
+        showSection(sectionId);
+      });
     });
 
-    window.onpopstate = function(e) {
-      const sectionId = window.location.pathname.replace('/', '');
-      if (sectionId) {
-        showSection(sectionId);
-      }
-    };
+    window.addEventListener('popstate', function(e) {
+      const sectionId = window.location.pathname.replace('/', '') || 'home';
+      showSection(sectionId);
+    });
+
+    let initialSection = window.location.pathname.replace('/', '') || 'home';
+    showSection(initialSection);
+  });
+
 	</script>
 
   <style>
