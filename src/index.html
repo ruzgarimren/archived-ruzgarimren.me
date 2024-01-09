@@ -13,36 +13,42 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
   <script>
       document.addEventListener('DOMContentLoaded', function() {
-      const navLinks = document.querySelectorAll('.Navbar-Container a');
-      navLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-              e.preventDefault();
-              const sectionId = this.getAttribute('data-target');
-              window.location.hash = sectionId;
-          });
-      });
+    const navLinks = document.querySelectorAll('.Navbar-Container a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const sectionId = this.getAttribute('data-target');
+            window.location.hash = sectionId;
+        });
+    });
 
-      function showSection(sectionId) {
-          document.querySelectorAll('.App > section').forEach(section => {
-              section.style.display = 'none';
-          });
+    function showSection(sectionId) {
+        document.querySelectorAll('.App > section').forEach(sec => {
+            sec.style.display = 'none';
+        });
 
-          const section = document.getElementById(sectionId);
-          if (section) {
-              section.style.display = 'block';
-          }
-      }
+        const selectedSection = document.getElementById(sectionId);
+        if (selectedSection) {
+            selectedSection.style.display = 'block';
+        }
 
-      window.addEventListener('hashchange', function() {
-          showSection(window.location.hash.substring(1));
-      }, false);
+        const header = document.getElementById('header');
+        if (header) {
+            header.style.display = 'block';
+        }
+    }
 
-      if (!window.location.hash) {
-          window.location.hash = 'home';
-      }
+    window.addEventListener('hashchange', function() {
+        showSection(window.location.hash.substring(1));
+    }, false);
 
-    showSection(window.location.hash.substring(1));
-  });
+    if (window.location.hash) {
+        showSection(window.location.hash.substring(1));
+    } else {
+        showSection('home');
+    }
+});
+
 	</script>
 
   <style>
