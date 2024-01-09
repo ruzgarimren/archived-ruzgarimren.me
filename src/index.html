@@ -7,6 +7,8 @@
   <meta property="og:image:width" content="630" />
   <meta property="og:image:height" content="1200" />
   <meta property="og:description" content="I'm Ruzgar, a software developer and educator living in Istanbul, Turkiye.">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5967274519099938"
+     crossorigin="anonymous"></script>
   <title>Ruzgar Imren</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
   <script>
@@ -16,8 +18,7 @@
           link.addEventListener('click', function(e) {
               e.preventDefault();
               const sectionId = this.getAttribute('data-target');
-              window.history.pushState({}, '', '/' + sectionId);
-              showSection(sectionId);
+              window.location.hash = sectionId;
           });
       });
 
@@ -32,21 +33,17 @@
           }
       }
 
-      let initialSection = window.location.pathname.replace('/', '');
-      if (!initialSection || initialSection === '/') {
-          initialSection = 'home';
-          window.history.replaceState({}, '', '/home');
-      }
-      showSection(initialSection);
-    });
+      window.addEventListener('hashchange', function() {
+          showSection(window.location.hash.substring(1));
+      }, false);
 
-    window.onpopstate = function(e) {
-        const sectionId = window.location.pathname.replace('/', '');
-        if (sectionId) {
-            showSection(sectionId);
-        }
-    };
-</script>
+      if (!window.location.hash) {
+          window.location.hash = 'home';
+      }
+
+    showSection(window.location.hash.substring(1));
+  });
+	</script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
@@ -79,6 +76,7 @@
       -ms-user-select: none;    
       user-select: none;
       text-align: center;
+      min-height: 100vh;
       height: 2000px;
     }
 
@@ -104,7 +102,7 @@
       margin-bottom: 22px;
     }
 
-	  #calcformatics {
+    #calcformatics {
       margin-bottom: 10px;
     }
 
@@ -143,58 +141,79 @@
       white-space: pre-wrap;
     }
 
+    .Paragraph, .Video {
+      margin-top: 30px;
+    }
+
     .Paragraph h2, .Paragraph p {
       margin: 20px;
     }
 
     @media (max-width: 768px) {
+      .App {
+        min-height: auto;
+      }
+
       .Paragraph, .Paragraph h2, .Paragraph p {
         margin: 10px;
         padding-right: 0;
-      }
-
-      .Paragraph #calcformatics-text {
-        margin: 0;
       }
 
       .Navbar-Container {
         flex-direction: column;
         align-items: center;
       }
+    }
 
-      .a {
-        text-decoration: inherit;
-        cursor: pointer;
-      }
+    .Paragraph #calcformatics-text {
+      margin: 0;
+    }
 
-      .marker {
-        unicode-bidi: isolate;
-        font-variant-numeric: tabular-nums;
-        text-transform: none;
-        text-indent: 0px !important;
-        text-align: start !important;
-        text-align-last: start !important;
-		    text-decoration: inherit;
-      }
+    .a {
+      text-decoration: inherit;
+      cursor: pointer;
+    }
 
-      .link {
-        font-size: 18px;
-        text-decoration: inherit;
-      }
+    .marker {
+      unicode-bidi: isolate;
+      font-variant-numeric: tabular-nums;
+      text-transform: none;
+      text-indent: 4px !important;
+      text-align: start !important;
+      text-align-last: start !important;
+      text-decoration: inherit;
+      text-size-adjust: 4px;
+    }
 
-      .mystack {
-        text-decoration: inherit;
-      }
+    .link {
+      font-size: 18px;
+      text-decoration: inherit;
+    }
 
-      .mystack:hover {
-        text-decoration: underline;
-      }
-		
+    .mystack {
+      text-decoration: inherit;
+    }
+
+    .mystack:hover {
+      text-decoration: underline;
+    }
+
+    #header {
+      display: block;
+    }
+
+    #projects-container h2 {
+      text-align: center;
+      align-items: center;
+      align-self: center;
+      justify-content: center;
+      margin-left: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="App"> 
-    <header class="App-header">
+    <header id="header" class="App-header">
       <img src="https://ruzgarimren.me/wp-content/uploads/2023/11/portfolio-fotor-20231125125858.png" class="App-logo" alt="Profile Picture">
       <h2>Ruzgar Imren</h2>
       <nav>
@@ -209,34 +228,71 @@
       <h1 class="title">Hello!</h1>
       <p>
 I'm Ruzgar, a software developer and educator living in Istanbul, Turkiye.
-		  
+
 I run <b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b>, a video series teaching topics in computer science and mathematics. At Harvard University, I've created and taught courses about artificial intelligence and web programming. I've also been a course head for CS50, Harvard's introductory course in computer science, and a co-instructor for CS51, Harvard's course on abstraction and design in computing. I currently work at <b><a class="mystack" target="_blank" href="https://www.turing.com/" rel="noopener">Turing</a></b>, developing an artificial intelligence tool as a chatbot. I've also been working at <a class="mystack" target="_blank" href="https://blang.framer.website/" rel="noopener">BLang</a>, an ai-based language learning platform, and running my own startup, <a class="mystack" target="_blank" href="https://rallin.org" rel="noopener">Rallin Security</a>.
-		  
+
 Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzgarimren.me</a>.
       </p>
 
       <h1 class="title" id="calcformatics">CalcFormatics</h1>
       <p id="calcformatics-text">
-<b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b> is a collection of educational videos I've written and filmed primarily about topics in computer science.
+    <b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b> is a collection of educational videos I've written and filmed primarily about topics in computer science.
       </p>
 
       <h1 class="title">Links</h1>
       <ul class="links">
         <li class="marker"><a class="link" href="mailto:ruzgar@ruzgarimren.me">Email</a></li>
         <li class="marker"><a class="link" target="_blank" href="https://github.com/ruzgarimren" rel="noopener">GitHub</a></li>
-        <li class="marker"><a class="link" target="_blank" href="https://linkedin/in/ruzgarimren" rel="noopener">LinkedIn</a></li>
-        <li class="marker"><a class="link" target="_blank" href="https://youtube/@CalcFormatics" rel="noopener">Youtube</a></li>
+        <li class="marker"><a class="link" target="_blank" href="https://linkedin.com/in/ruzgarimren" rel="noopener">LinkedIn</a></li>
+        <li class="marker"><a class="link" target="_blank" href="https://youtube.com/@CalcFormatics" rel="noopener">Youtube</a></li>
         <li class="marker"><a class="link" target="_blank" href="https://substack.com/@calcformatics" rel="noopener">Substack</a></li>
       </ul>
     </section>
 
     <section id="videos">
-		<div class="Video">
-        	<iframe src="https://www.youtube.com/watch?v=nrDs3Tk08bg" frameborder="0" allowfullscreen></iframe>
-        	<p>Harvard Mathematics Admissions | Geometry / Probability Question (Heron's Formula)</p>
+        <div class="Video">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/nrDs3Tk08bg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
+          <p>Harvard Mathematics Admissions | Geometry / Probability Question (Heron's Formula)</p>
+        </div>  
+        <div class="Video">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/dRPTmrPxhPU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
+          <p>Oxford CS Admissions | 2012 - Q6</p>
+        </div> 
+        <div class="Video">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/m2CTf1MHoso" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
+          <p>A simple Question about Eigenvalues - Linear Algebra</p>
+        </div>   
+    </section>      
+
+    <section id="projects">
+      <div class="projects-container">
+        <div class="calcformatics">
+          
+        </div>
+        <div class="Pacman">
+          <h2 class="marker"><a target="_blank" href="https://github.com/ruzgarimren/Pacman" rel="noopener">Pacman</a></h2>
+        </div>
+        <div class="QPong">
+          <h2 class="marker"><a target="_blank" href="https://github.com/ruzgarimren/YHP" rel="noopener">QPong</a></h2>
+        </div>
+        <div class="QuizGame">
+          <h2 class="marker"><a target="_blank" href="https://github.com/ruzgarimren/QuizGame" rel="noopener">QuizGame</a></h2>
+        </div>
+        <div class="SnakeGame">
+          <h2 class="marker"><a target="_blank" href="https://github.com/ruzgarimren/SnakeGame" rel="noopener">SnakeGame</a></h2>
+        </div>
+      </div>
+      <h2>Teaching Documents</h2>
+      <div class="teaching-documents">
+        <h4>Eigenvalues & Eigenvectors</h4>
+        <iframe 
+          src="https://nbviewer.jupyter.org/github/ruzgarimren/Eigenvalues-and-Eigenvectors/blob/main/Eigenvalues_and_Eigenvectors.ipynb"
+          width="1000"
+          height="500"
+          frameborder="0">
+        </iframe>
       </div>
     </section>
   </div>
 </body>
 </html>
-
