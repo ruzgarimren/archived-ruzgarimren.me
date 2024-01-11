@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5967274519099938" crossorigin="anonymous"></script>
+  <script src="https://apis.google.com/js/platform.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:image" content="https://ruzgarimren.me/wp-content/uploads/2023/11/portfolio-fotor-20231125125858.png" />
   <meta property="og:image:width" content="630" />
   <meta property="og:image:height" content="1200" />
   <meta property="og:description" content="I'm Ruzgar, a software developer and educator living in Istanbul, Turkiye.">
-
-  <title>Ruzgar Imren</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+  <link rel="icon" type="image/png" href="https://ruzgarimren.me/wp-content/uploads/2023/11/portfolio-fotor-20231125125858.png">
+  <title>Ruzgar Imren</title>
+
   <script>
    document.addEventListener('DOMContentLoaded', function() {
     function showSection(sectionId) {
@@ -78,11 +80,11 @@
       user-select: none;
       text-align: center;
       min-height: 100vh;
-      height: 2000px;
+      height: 1500px;
     }
 
     .App-logo {
-      margin-top: 30px;
+      margin-top: -10px;
       height: 25vmin;
       pointer-events: none;
     }
@@ -130,7 +132,7 @@
       max-width: 90%;
       margin: 10px auto;
       text-align: left;
-      height: 3000px;
+      height: 1500px;
       position: relative;
     }
 
@@ -164,6 +166,8 @@
         flex-direction: column;
         align-items: center;
       }
+
+      
     }
 
     .Paragraph #calcformatics-text {
@@ -201,7 +205,7 @@
 
     #header {
       display: block;
-		position: sticky;
+		  position: sticky;
     }
 
     #projects-container h2 {
@@ -210,6 +214,52 @@
       align-self: center;
       justify-content: center;
       margin-left: 20px;
+    }
+
+    #hello {
+      margin-bottom: -15px;
+    }
+
+    .yt-subscription {
+      margin-top: 30px;
+      margin-bottom: 0px;
+      margin-left: 30px;
+    }
+
+    #footer {
+      padding: 20px;
+      text-align: center;
+      color: black;
+      font-size: 14px;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #footer a {
+      color: black;
+      text-decoration: inherit;
+      text-decoration-color: blue;
+    }
+
+    #footer a:hover {
+      text-decoration: underline;
+    }
+
+    #privacy-policy {
+      margin-top: 20px;
+      max-width: 90%;
+      margin: 10px auto;
+      text-align: left;
+      height: 2000px;
+      position: relative;
+    }
+
+    #privacy-policy p {
+      font-size: 20px;
+      line-height: 1.4;
+      overflow: hidden;
+      letter-spacing: 1px;
+      white-space: pre-wrap;
     }
   </style>
 </head>
@@ -228,9 +278,9 @@
           </nav>
         </header>
       </div>
-      
+      <hr>
       <section id="home" class="Paragraph">
-        <h1 class="title">Hello!</h1>
+        <h1 id="hello" class="title">Hello!</h1>
         <p>
 I'm Ruzgar, a software developer and educator living in Istanbul, Turkiye.
 
@@ -240,19 +290,27 @@ Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzg
         </p>
 
         <h1 class="title" id="calcformatics">CalcFormatics</h1>
-        <p id="calcformatics-text">
-      <b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b> is a collection of educational videos I've written and filmed primarily about topics in computer science.
-        </p>
-
-        <h1 class="title">Links</h1>
-        <ul class="links">
-          <li class="marker"><a class="link" href="mailto:ruzgar@ruzgarimren.me">Email</a></li>
-          <li class="marker"><a class="link" target="_blank" href="https://github.com/ruzgarimren" rel="noopener">GitHub</a></li>
-          <li class="marker"><a class="link" target="_blank" href="https://linkedin.com/in/ruzgarimren" rel="noopener">LinkedIn</a></li>
-          <li class="marker"><a class="link" target="_blank" href="https://youtube.com/@CalcFormatics" rel="noopener">Youtube</a></li>
-          <li class="marker"><a class="link" target="_blank" href="https://www.instagram.com/calcformatics/" rel="noopener">Instagram</a></li>
-          <!-- <li class="marker"><a class="link" target="_blank" href="https://substack.com/@calcformatics" rel="noopener">Substack</a></li> -->
-        </ul>
+        <div class="yt-subscription">
+          <div class="g-ytsubscribe" data-channelid="UCQQ6FdbjJifbIlokTvoq5rA" data-layout="full" data-count="hidden"></div>
+        </div>
+        <div class="after-button">
+          <p id="calcformatics-text">
+    <b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b> is a collection of educational videos I've written and filmed primarily about topics in computer science.
+                </p>
+                <h1 class="title">Links</h1>
+                <ul class="links">
+                  <li class="marker"><a class="link" href="mailto:ruzgar@ruzgarimren.me">Email</a></li>
+                  <li class="marker"><a class="link" target="_blank" href="https://github.com/ruzgarimren" rel="noopener">GitHub</a></li>
+                  <li class="marker"><a class="link" target="_blank" href="https://linkedin.com/in/ruzgarimren" rel="noopener">LinkedIn</a></li>
+                  <li class="marker"><a class="link" target="_blank" href="https://youtube.com/@CalcFormatics" rel="noopener">Youtube</a></li>
+                  <li class="marker"><a class="link" target="_blank" href="https://www.instagram.com/calcformatics/" rel="noopener">Instagram</a></li>
+                  <!-- <li class="marker"><a class="link" target="_blank" href="https://substack.com/@calcformatics" rel="noopener">Substack</a></li> -->
+                </ul>
+        </div>
+        <footer id="footer">
+          © 2024 Ruzgar Imren. All rights reserved.
+          <a href="/privacy-policy">Privacy Policy</a>
+        </footer>
       </section>
 
       <section id="videos">
@@ -268,12 +326,16 @@ Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzg
             <iframe width="560" height="315" src="https://www.youtube.com/embed/m2CTf1MHoso" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
             <p>A simple Question about Eigenvalues - Linear Algebra</p>
           </div>   
+          <footer id="footer">
+            © 2024 Ruzgar Imren. All rights reserved.
+            <a href="/privacy-policy">Privacy Policy</a>
+          </footer>
       </section>      
 
       <section id="projects">
         <div class="projects-container">
           <div class="calcformatics">
-            
+
           </div>
           <div class="Pacman">
             <h2 class="marker"><a target="_blank" href="https://github.com/ruzgarimren/Pacman" rel="noopener">Pacman</a></h2>
@@ -298,6 +360,23 @@ Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzg
             frameborder="0">
           </iframe>
         </div>
+        <footer id="footer">
+          © 2024 Ruzgar Imren. All rights reserved.
+          <a href="/privacy-policy">Privacy Policy</a>
+        </footer>
+      </section>
+      <section id="privacy-policy">
+        <p>
+        Information Sharing and Disclosure
+        ruzgarimren.me is committed to maintaining the privacy and protection of your personal information. This section outlines our practices regarding the sharing and disclosure of your information.
+        <b>With Service Providers</b>: We may share your information with third-party service providers who perform services on our behalf. These services include, but are not limited to, website hosting, data analysis, email delivery, and advertising services. Our service providers are given access to your information only as is necessary to perform their functions and are not permitted to share or use the information for any other purpose.
+
+        <b>Google Ads</b>: Our website uses Google Ads for advertising. Google uses cookies to serve ads based on your prior visits to our website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our sites and/or other sites on the Internet. You may opt out of personalized advertising by visiting Google's Ads Settings.
+
+        <b>Compliance with Laws</b>: We may disclose your information if required to do so by law or in the good faith belief that such action is necessary to comply with a legal obligation, protect and defend the rights or property of ruzgarimren.me, act in urgent circumstances to protect the personal safety of users of the site, or protect against legal liability.
+
+        <b>Business Transfers</b>: In the event that ruzgarimren.me undergoes a merger, acquisition by another company, or sale of all or a portion of its assets, your personal information may be among the assets transferred. You acknowledge that such transfers may occur and are permitted by this Privacy Policy, and that any acquirer of our assets may continue to process your personal information as set forth in this policy.
+        </p>
       </section>
   </div>
 </body>
