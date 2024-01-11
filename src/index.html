@@ -23,7 +23,13 @@
       const section = document.getElementById(sectionId);
       if (section) {
         section.style.display = 'block';
-        document.title = "Ruzgar Imren - " + sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+        if (sectionId === 'home') {
+          document.title = "Ruzgar Imren";
+        } else if (sectionId === 'privacy-policy') {
+          document.title = "Ruzgar Imren - Privacy Policy";
+        } else {
+          document.title = "Ruzgar Imren - " + sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+        }
       }
     }
 
@@ -32,26 +38,115 @@
       link.addEventListener('click', function(e) {
         e.preventDefault();
         const sectionId = this.getAttribute('data-target');
-        window.history.pushState({}, '', '/' + sectionId);
+        const urlPath = sectionId === 'home' ? '/' : '/' + sectionId;
+        window.history.pushState({}, '', urlPath);
         showSection(sectionId);
       });
     });
 
     window.addEventListener('popstate', function(e) {
-      const sectionId = window.location.pathname.replace('/', '') || 'home';
+      const path = window.location.pathname.replace('/', '');
+      const sectionId = path === '' ? 'home' : path;
       showSection(sectionId);
     });
 
-    let initialSection = window.location.pathname.replace('/', '') || 'home';
+    const initialPath = window.location.pathname.replace('/', '');
+    const initialSection = initialPath === '' ? 'home' : initialPath;
     showSection(initialSection);
   });
+  
+  function isMobileDevice() {
+    return /Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 1200;
+  }
 
+  var width = window.innerWidth;
+  function resizeSubstackIframe() {
+    var iframe = document.getElementById('substack');
+    if (iframe) {
+      try {
+        if (isMobileDevice()) {
+          iframe.width = '1100' - Math.abs(width - '1200');
+          iframe.height = '355';
+        } else {
+          iframe.width = '1200';
+          iframe.height = '320';
+        }
+      } catch (e) {
+        console.error('Error resizing iframe:', e);
+      }
+    }
+  }
+
+  function resizeVideo1Iframe() {
+    var iframe = document.getElementById('video1');
+    if (iframe) {
+      try {
+        if (isMobileDevice()) {
+          iframe.width = '1100' - Math.abs(width - '1200');
+          iframe.height = '355';
+        } else {
+          iframe.width = '560';
+          iframe.height = '315';
+        }
+      } catch (e) {
+        console.error('Error resizing iframe:', e);
+      }
+    }
+  }
+
+
+  function resizeVideo2Iframe() {
+    var iframe = document.getElementById('video2');
+    if (iframe) {
+      try {
+        if (isMobileDevice()) {
+          iframe.width = '1100' - Math.abs(width - '1200');
+          iframe.height = '355';
+        } else {
+          iframe.width = '560';
+          iframe.height = '315';
+        }
+      } catch (e) {
+        console.error('Error resizing iframe:', e);
+      }
+    }
+  }
+
+  function resizeVideo3Iframe() {
+    var iframe = document.getElementById('video3');
+    if (iframe) {
+      try {
+        if (isMobileDevice()) {
+          iframe.width = '1100' - Math.abs(width - '1200');
+          iframe.height = '355';
+        } else {
+          iframe.width = '560';
+          iframe.height = '315';
+        }
+      } catch (e) {
+        console.error('Error resizing iframe:', e);
+      }
+    }
+  }
+
+  function resizeIframes() {
+    resizeSubstackIframe();
+    resizeVideo1Iframe();
+    resizeVideo2Iframe();
+    resizeVideo3Iframe();
+  }
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 560) {
+      resizeIframes();
+    }
+  });
 	</script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-    html {
+    body {
       overflow-y: scroll;
       overflow-x: hidden;
     }
@@ -168,8 +263,6 @@
         flex-direction: column;
         align-items: center;
       }
-
-      
     }
 
     .Paragraph #calcformatics-text {
@@ -263,6 +356,11 @@
       letter-spacing: 1px;
       white-space: pre-wrap;
     }
+
+    .substack {
+      justify-content: center;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -298,7 +396,10 @@ Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzg
         <div class="after-button">
           <p id="calcformatics-text">
     <b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b> is a collection of educational videos I've written and filmed primarily about topics in computer science.
-                </p>
+          </p>
+          <div class="substack">
+            <iframe id="substack" width="1200" height="320" src="https://calcformatics.substack.com/embed" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+          </div>
                 <h1 class="title">Links</h1>
                 <ul class="links">
                   <li class="marker"><a class="link" href="mailto:ruzgar@ruzgarimren.me">Email</a></li>
@@ -310,26 +411,26 @@ Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzg
                 </ul>
         </div>
         <footer id="footer">
-          © 2024 Ruzgar Imren. All rights reserved.
+          Copyright © 2024 Ruzgar Imren. All rights reserved.
           <a href="/privacy-policy">Privacy Policy</a>
         </footer>
       </section>
 
       <section id="videos">
           <div class="Video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/nrDs3Tk08bg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
+            <iframe id="video1" width="560" height="315" src="https://www.youtube.com/embed/nrDs3Tk08bg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
             <p>Harvard Mathematics Admissions | Geometry / Probability Question (Heron's Formula)</p>
           </div>  
           <div class="Video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/dRPTmrPxhPU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
+            <iframe id="video2" width="560" height="315" src="https://www.youtube.com/embed/dRPTmrPxhPU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
             <p>Oxford CS Admissions | 2012 - Q6</p>
           </div> 
           <div class="Video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/m2CTf1MHoso" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
+            <iframe id="video3" width="560" height="315" src="https://www.youtube.com/embed/m2CTf1MHoso" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
             <p>A simple Question about Eigenvalues - Linear Algebra</p>
           </div>   
           <footer id="footer">
-            © 2024 Ruzgar Imren. All rights reserved.
+            Copyright © 2024 Ruzgar Imren. All rights reserved.
             <a href="/privacy-policy">Privacy Policy</a>
           </footer>
       </section>      
@@ -363,14 +464,17 @@ Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzg
           </iframe>
         </div>
         <footer id="footer">
-          © 2024 Ruzgar Imren. All rights reserved.
+          Copyright © 2024 Ruzgar Imren. All rights reserved.
           <a href="/privacy-policy">Privacy Policy</a>
         </footer>
       </section>
       <section id="privacy-policy">
         <p>
-        Information Sharing and Disclosure
-        ruzgarimren.me is committed to maintaining the privacy and protection of your personal information. This section outlines our practices regarding the sharing and disclosure of your information.
+        We support Kamil Nodes!
+
+        <b>Information Sharing and Disclosure</b>
+        <b><i>ruzgarimren.me</i></b> is committed to maintaining the privacy and protection of your personal information. This section outlines our practices regarding the sharing and disclosure of your information.
+
         <b>With Service Providers</b>: We may share your information with third-party service providers who perform services on our behalf. These services include, but are not limited to, website hosting, data analysis, email delivery, and advertising services. Our service providers are given access to your information only as is necessary to perform their functions and are not permitted to share or use the information for any other purpose.
 
         <b>Google Ads</b>: Our website uses Google Ads for advertising. Google uses cookies to serve ads based on your prior visits to our website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our sites and/or other sites on the Internet. You may opt out of personalized advertising by visiting Google's Ads Settings.
@@ -379,6 +483,10 @@ Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzg
 
         <b>Business Transfers</b>: In the event that ruzgarimren.me undergoes a merger, acquisition by another company, or sale of all or a portion of its assets, your personal information may be among the assets transferred. You acknowledge that such transfers may occur and are permitted by this Privacy Policy, and that any acquirer of our assets may continue to process your personal information as set forth in this policy.
         </p>
+        <footer id="footer">
+          Copyright © 2024 Ruzgar Imren. All rights reserved.
+          <a href="/privacy-policy">Privacy Policy</a>
+        </footer>
       </section>
   </div>
 </body>
