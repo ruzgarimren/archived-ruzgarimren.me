@@ -55,92 +55,64 @@
     showSection(initialSection);
   });
   
-  function isMobileDevice() {
-    return /Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 1200;
-  }
+    var debounceTimer;
+    var lastWidth = window.innerWidth;
+    var lastHeight = window.innerHeight;
 
-  var width = window.innerWidth;
-  function resizeSubstackIframe() {
-    var iframe = document.getElementById('substack');
-    if (iframe) {
-      try {
-        if (isMobileDevice()) {
-          iframe.width = '1100' - Math.abs(width - '1200');
-          iframe.height = '355';
-        } else {
-          iframe.width = '1200';
-          iframe.height = '320';
+    function isMobileDevice() {
+        return /Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    function resizeIframe(iframeId, width, height) {
+        var iframe = document.getElementById(iframeId);
+        if (iframe) {
+            iframe.style.width = width + 'px';
+            iframe.style.height = height + 'px';
         }
-      } catch (e) {
-        console.error('Error resizing iframe:', e);
-      }
     }
-  }
 
-  function resizeVideo1Iframe() {
-    var iframe = document.getElementById('video1');
-    if (iframe) {
-      try {
-        if (isMobileDevice()) {
-          iframe.width = '1100' - Math.abs(width - '1200');
-          iframe.height = '355';
-        } else {
-          iframe.width = '560';
-          iframe.height = '315';
+    function resizeAllIframes() {
+        var currentWidth = window.innerWidth;
+        var currentHeight = window.innerHeight;
+
+        if (lastWidth !== currentWidth) {
+            if (isMobileDevice()) {
+                resizeIframe('substack', 350, 300);
+                resizeIframe('video1', 350, 300);
+                resizeIframe('video2', 350, 300);
+                resizeIframe('video3', 350, 300);
+            } else {
+                var newWidth = Math.min(1100, currentWidth - 20);
+                resizeIframe('substack', newWidth)
+                resizeIframe('video1', newWidth) 
+                resizeIframe('video2', newWidth) 
+                resizeIframe('video3', newWidth) 
+            }
+
+            lastWidth = currentWidth;
+            lastHeight = currentHeight;
         }
-      } catch (e) {
-        console.error('Error resizing iframe:', e);
-      }
     }
-  }
 
-
-  function resizeVideo2Iframe() {
-    var iframe = document.getElementById('video2');
-    if (iframe) {
-      try {
-        if (isMobileDevice()) {
-          iframe.width = '1100' - Math.abs(width - '1200');
-          iframe.height = '355';
-        } else {
-          iframe.width = '560';
-          iframe.height = '315';
-        }
-      } catch (e) {
-        console.error('Error resizing iframe:', e);
-      }
+    function debounce(func, wait, immediate) {
+        return function() {
+            var context = this, args = arguments;
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                debounceTimer = null;
+                if (!immediate) func.apply(context, args);
+            }, wait);
+            if (immediate && !debounceTimer) func.apply(context, args);
+        };
     }
-  }
 
-  function resizeVideo3Iframe() {
-    var iframe = document.getElementById('video3');
-    if (iframe) {
-      try {
-        if (isMobileDevice()) {
-          iframe.width = '1100' - Math.abs(width - '1200');
-          iframe.height = '355';
-        } else {
-          iframe.width = '560';
-          iframe.height = '315';
-        }
-      } catch (e) {
-        console.error('Error resizing iframe:', e);
-      }
-    }
-  }
+    var debouncedResize = debounce(function() {
+        resizeAllIframes();
+    }, 250);
 
-  function resizeIframes() {
-    resizeSubstackIframe();
-    resizeVideo1Iframe();
-    resizeVideo2Iframe();
-    resizeVideo3Iframe();
-  }
+    window.addEventListener('resize', debouncedResize);
 
-  window.addEventListener('resize', function() {
-    if (window.innerWidth > 560) {
-      resizeIframes();
-    }
-  });
+    resizeAllIframes();
 	</script>
 
   <style>
@@ -395,7 +367,7 @@
         <p>
 I'm Ruzgar, a software developer and educator living in Istanbul, Turkiye.
 
-I run <b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b>, a video series teaching topics in computer science and mathematics. I currently work at <b><a target="_blank" href="https://madlen.io/" rel="noopener">Madlen</a></b>, developing an all-in-one ai-supported edtech application and <a class="mystack" target="_blank" href="https://www.turing.com/" rel="noopener">Turing</a>, an artificial intelligence tool as a chatbot. I've also worked at <a class="mystack" target="_blank" href="https://blang.framer.website/" rel="noopener">BLang</a>, an language learning platform, and running my own startup, <a class="mystack" target="_blank" href="https://rallin.org" rel="noopener">Rallin Security</a>.
+I run <b><a class="mystack" target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">CalcFormatics</a></b>, a video series teaching topics in computer science and mathematics. I currently work at <b><a class="mystack" target="_blank" href="https://www.turing.com/" rel="noopener">Turing</a></b>, developing an artificial intelligence tool as a chatbot. I've also worked at <a class="mystack" target="_blank" href="https://blang.framer.website/" rel="noopener">BLang</a>, an ai-based language learning platform, and running my own startup, <a class="mystack" target="_blank" href="https://rallin.org" rel="noopener">Rallin Security</a>.
 
 Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzgarimren.me</a>.
         </p>
@@ -430,7 +402,7 @@ Contact me at <a class="mystack" href="mailto:ruzgar@ruzgarimren.me">ruzgar@ruzg
       <section id="videos">
         <h2>CalcFormatics</h2>
         <div>
-          <p>An educational series on topics in computer science and mathematics, available on <a target="_blank" href="https://www.youtube.com/@CalcFormatics" rel="noopener">YouTube</a>. For future topic suggestions, email <a href="mailto:ruzgar@ruzgarimren.me">ruzgarimren@calcformatics.com</a></p>
+          <p>An educational series on topics in computer science and mathematics, available on <a target="_blank" href="https://www.youtube.com/@CalcFormatics">YouTube</a>. For future topic suggestions, email <a href="mailto:ruzgar@ruzgarimren.me">ruzgarimren@calcformatics.com</a></p>
         </div>
           <div class="Video">
             <iframe id="video1" width="560" height="315" src="https://www.youtube.com/embed/nrDs3Tk08bg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="margin-top: 20px;"></iframe>
